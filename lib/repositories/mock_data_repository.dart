@@ -1,0 +1,19 @@
+import 'package:flutter/material.dart';
+import '../models/zaylo_models.dart';
+
+class MockDataRepository {
+  final now = DateTime(2026, 7, 17, 8, 30);
+  List<ServiceItem> services() => const [
+    ServiceItem('Expenses','Track spending and budgets','/expenses', Icons.account_balance_wallet_outlined), ServiceItem('Prices','Compare grocery prices','/prices', Icons.shopping_basket_outlined), ServiceItem('Exchange Rates','Official and community rates','/exchange', Icons.currency_exchange), ServiceItem('Jobs','Find work and side hustles','/jobs', Icons.work_outline), ServiceItem('Outages','Power and water reports','/outages', Icons.report_problem_outlined), ServiceItem('Rentals','Browse homes and rooms','/rentals', Icons.home_outlined), ServiceItem('Fuel','Fuel prices by city','/fuel', Icons.local_gas_station_outlined), ServiceItem('Students','Resources and scholarships','/students', Icons.school_outlined), ServiceItem('Farmers','Guides and market info','/farmers', Icons.agriculture_outlined), ServiceItem('Reminders','Bills and due dates','/reminders', Icons.notifications_none)];
+  List<ExpenseTransaction> expenses() => [ExpenseTransaction(title:'Groceries', amount:42, category:'Food', type:ExpenseType.expense, date:now), ExpenseTransaction(title:'Freelance design', amount:180, category:'Income', type:ExpenseType.income, date:now), ExpenseTransaction(title:'Combi fares', amount:8, category:'Transport', type:ExpenseType.expense, date:now)];
+  List<GroceryPrice> groceries() => [GroceryPrice(product:'Roller meal 10kg', store:'OK Avondale', city:'Harare', price:7.80, updatedAt:now, verified:true), GroceryPrice(product:'Cooking oil 2L', store:'TM Pick n Pay', city:'Bulawayo', price:4.40, updatedAt:now, verified:false), GroceryPrice(product:'Sugar beans 1kg', store:'Gain Cash & Carry', city:'Mutare', price:2.10, updatedAt:now, verified:true)];
+  List<FuelPrice> fuel() => [FuelPrice('TotalEnergies Borrowdale','Harare',1.59,1.61,now,true), FuelPrice('Puma Bradfield','Bulawayo',1.60,1.62,now,false)];
+  List<ExchangeRate> rates() => ['USD','ZAR','ZWG','GBP','EUR','BWP'].asMap().entries.map((e)=>ExchangeRate(e.value, [1,18.2,13.6,.76,.92,13.4][e.key].toDouble(), [1,19.1,14.4,.78,.95,13.9][e.key].toDouble(), now)).toList();
+  List<JobListing> jobs() => [JobListing('Junior Bookkeeper','Mbare Fresh Foods','Harare','Full-time',now,DateTime(2026,7,31)), JobListing('Weekend Tutor','BrightPath Learning','Bulawayo','Part-time',now,DateTime(2026,8,5)), JobListing('Delivery Rider','ZimQuick Errands','Mutare','Side hustle',now,DateTime(2026,8,1))];
+  List<RentalListing> rentals() => const [RentalListing('Neat bedsitter near MSU','Gweru','Bedsitter',180,'+263 77 000 1001',true), RentalListing('Two-room cottage','Harare','Cottage',250,'+263 71 000 2002',false)];
+  List<CommunityPost> posts() => [CommunityPost('Prices','Tariro','Cooking oil is cheaper at the Mbare wholesaler today.',now,VerificationStatus.reviewing,18,4), CommunityPost('Outages','Kuda','Water restored in parts of Hillside this morning.',now,VerificationStatus.verified,31,9)];
+  List<OutageReport> outages() => [OutageReport('Electricity','Warren Park D','Harare',now,VerificationStatus.verified,24), OutageReport('Water','Mpopoma','Bulawayo',now,VerificationStatus.reviewing,11)];
+  List<ResourceItem> studentResources() => const [ResourceItem('O-Level Maths revision','Exam prep','Past-paper checklist and study plan'), ResourceItem('Local scholarship tracker','Scholarships','Fictional scholarship opportunities')];
+  List<ResourceItem> farmerGuides() => const [ResourceItem('Maize planting basics','Crops','Simple guide for small plots'), ResourceItem('Broiler starter checklist','Livestock','Feed, heat, and hygiene reminders')];
+  List<BillReminder> bills() => [BillReminder('ZESA token budget',35,DateTime(2026,7,25),'Monthly',false), BillReminder('Water bill',18,DateTime(2026,7,28),'Monthly',true)];
+}
